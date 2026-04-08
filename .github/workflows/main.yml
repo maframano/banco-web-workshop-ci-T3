@@ -1,0 +1,32 @@
+
+name: CI Mentoria
+
+# gatilhos -> quando esse pipeline deve executar
+on:
+  workflow_dispatch:    
+
+# [declaracoes]
+jobs:
+  tests:
+    # [Config do SO] (Docker, window)
+    runs-on: ubuntu-latest
+
+    #
+    env:
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 4000
+
+    steps:
+      - name: Clone do Projeto
+        uses: actions/checkout@v4   
+      - name: Instalando as dependencias do projeto
+        run: npm install
+      - name: Iniciando o servidor de mocks
+        run: npm run mock-server
+      - name: Iniciando o servidor de aplicacao
+        run: npm run server &
+      - name: Executando os testes do projeto
+        run: npm run test
+
+    
+  
