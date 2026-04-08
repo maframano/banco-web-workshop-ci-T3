@@ -22,7 +22,7 @@ jobs:
       - name: Instalando as dependencias do projeto
         run: npm install
       - name: Iniciando o servidor de mocks
-        run: npm run mock-server
+        run: npm run mock-server &
       - name: Iniciando o servidor de aplicacao
         run: npm run server &
       - name: Executando os testes do projeto
